@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contador Simples</title>
+  <style>
+    body { font-family: system-ui, Arial; display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f6f8fa; }
+    .card { background:white;padding:24px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.08);text-align:center;width:320px; }
+    button{ font-size:18px;padding:10px 16px;margin:8px;border-radius:8px;border:1px solid #ddd;background:#fff; }
+    .count{ font-size:48px;margin:16px 0;color:#111; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Contador</h2>
+    <div class="count" id="count">0</div>
+    <div>
+      <button id="dec">−</button>
+      <button id="reset">Reset</button>
+      <button id="inc">+</button>
+    </div>
+    <p style="font-size:12px;color:#666;margin-top:8px;">Salva localmente no seu navegador.</p>
+  </div>
+
+  <script>
+    const display = document.getElementById('count');
+    const inc = document.getElementById('inc');
+    const dec = document.getElementById('dec');
+    const reset = document.getElementById('reset');
+    let value = Number(localStorage.getItem('contador')) || 0;
+    function render(){ display.textContent = value; localStorage.setItem('contador', value); }
+    inc.onclick = () => { value++; render(); };
+    dec.onclick = () => { value--; render(); };
+    reset.onclick = () => { value = 0; render(); };
+    render();
+  </script>
+</body>
+</html>
